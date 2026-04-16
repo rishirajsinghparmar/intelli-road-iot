@@ -1,0 +1,416 @@
+/* =========================
+   IntelliRoad — Potholes CSS
+   Updated with Bouncy Gradient Cards
+   File: potholes.css
+   ========================= */
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --card-bg: #f8fafc;
+  --muted: #64748b;
+  --text: #0f172a;
+  --primary: #4ea0ff;
+  --primary-600: #2f7fe0;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --high: #ef4444;
+  --chip: #e2e8f0;
+  --border: #e2e8f0;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --radius: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Container */
+.ir-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+/* Header */
+.ir-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7cf, #4ea0ff 60%, #9ef);
+  box-shadow: 0 0 12px rgba(78, 160, 255, 0.6);
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
+  background: var(--chip);
+}
+
+.nav a.active {
+  color: white;
+  background: var(--primary);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Page Title */
+.page-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 0;
+}
+
+.page-title h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  background: var(--chip);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color: white;
+}
+
+.btn-light {
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Stats Section */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-value {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Cards Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1.7fr 0.9fr;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Bouncy Card Animation */
+.card {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  min-height: 300px;
+  padding: 1.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: scale(0.95) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Title */
+.card h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Gradient Overlay for Pothole Severity */
+.card-body {
+  position: absolute;
+  top: 8rem;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1rem;
+  transform: translateY(1.5rem);
+  transition: transform 0.25s ease, rotate 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover .card-body {
+  transform: translateY(0.5rem) rotate(2deg);
+}
+
+/* Severity Colors */
+.card[data-severity="critical"] .card-body {
+  background: linear-gradient(to bottom right, #ef4444, #dc2626);
+  color: #fee2e2;
+}
+
+.card[data-severity="high"] .card-body {
+  background: linear-gradient(to bottom right, #f97316, #ea580c);
+  color: #fff7ed;
+}
+
+.card[data-severity="medium"] .card-body {
+  background: linear-gradient(to bottom right, #eab308, #ca8a04);
+  color: #fefce8;
+}
+
+.card[data-severity="low"] .card-body {
+  background: linear-gradient(to bottom right, #22c55e, #16a34a);
+  color: #ecfdf5;
+}
+
+/* Footer Buttons inside Cards */
+.card-foot {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.card-foot button {
+  background: #1e293b;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+}
+
+.card-foot button:hover {
+  background: #334155;
+}
+
+/* Map Panel & Activity */
+.map-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.map-placeholder {
+  height: 240px;
+  background: repeating-linear-gradient(45deg, #f1f5f9 0 10px, #e2e8f0 10px 20px);
+  border: 1px dashed var(--border);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.activity {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+}
+
+.activity li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.critical {
+  background: var(--high);
+}
+
+.dot.verified {
+  background: var(--ok);
+}
+
+.dot.fixed {
+  background: var(--primary);
+}
+
+/* Footer */
+.ir-footer {
+  border-top: 1px solid var(--border);
+  background: white;
+  color: var(--muted);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Footer Styles === */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--road-color);
+  text-align: center;
+  padding: 8px 0;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 5s linear infinite;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Smooth left scrolling */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* === Color Changing Text Animation === */
+.scrolling-text span {
+  animation: colorChange 2s infinite alternate;
+}
+
+@keyframes colorChange {
+  0%   { color: #FFD700; }   /* Gold */
+  25%  { color: #00BFFF; }   /* Deep Sky Blue */
+  50%  { color: #32CD32; }   /* Lime Green */
+  75%  { color: #FF4500; }   /* Orange Red */
+  100% { color: #FFD700; }   /* Back to Gold */
+}

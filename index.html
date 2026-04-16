@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntelliRoad</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- === Header === -->
+  <header>
+    <h1>IntelliRoad</h1>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- === Main Content === -->
+  <main id="main-content">
+      
+    <!-- Home Section -->
+    <section id="home" class="page-section active">
+      <div class="hero-text">
+        <h2>Transforming Urban Mobility with <span>IntelliRoad</span></h2>
+        <p>Our smart infrastructure solutions provide real-time traffic insights, enhance safety, and pave the way for a more connected and efficient future.</p>
+        <div class="btn-group">
+          <a href="selection.html" class="btn btn-primary">Get Started</a>
+          <a href="learn-more.html" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Road Animation -->
+    <div class="road" id="main-road">
+      <div class="lane"></div>
+      <div id="traffic-container"></div>
+    </div>
+
+<!-- About Section -->
+<section id="about" class="page-section">
+  <div class="content-card">
+    <h3>About IntelliRoad</h3>
+    <p>
+      <strong>IntelliRoad</strong> is a cutting-edge AI + IoT solution designed to improve road safety and
+      urban mobility. It uses low-cost sensors, Raspberry Pi devices, and deep learning algorithms
+      to monitor both <strong>road conditions</strong> and <strong>driver behavior</strong> in real-time.
+    </p>
+    <p>
+      The system automatically detects <strong>potholes, road damages, rash driving, overspeeding,
+      and unsafe overtaking</strong>. Captured data is transmitted through 4G connectivity to a 
+      cloud-based dashboard, where authorities can visualize events on interactive maps 
+      and take timely actions.
+    </p>
+    <p>
+      By combining AI, IoT, and cloud analytics, IntelliRoad empowers municipalities to:
+    </p>
+    <ul>
+      <li>Enhance road safety by detecting hazards early.</li>
+      <li>Enable proactive road repairs and infrastructure planning.</li>
+      <li>Reduce congestion and environmental impact.</li>
+      <li>Move towards <strong>smarter, safer, and sustainable cities</strong>.</li>
+    </ul>
+    <p>
+      With IntelliRoad, the goal is to create a unified smart traffic management system that saves lives,
+      reduces accidents, and improves the quality of urban transportation.
+    </p>
+  </div>
+</section>
+
+
+<!-- Services Section -->
+<section id="services" class="page-section">
+  <div class="content-card">
+    <h3>Our Core Services</h3>
+    <p>
+      IntelliRoad provides a unified AI + IoT solution to make roads safer and smarter. 
+      Our platform integrates hardware, software, and analytics to deliver real-time insights 
+      for authorities and citizens. Here’s what we offer:
+    </p>
+
+    <p><strong>1. Road Damage Detection</strong>:  
+      Using computer vision and deep learning models like <strong>YOLO</strong>, IntelliRoad 
+      identifies potholes and road surface damage in real time, enabling municipalities to 
+      take proactive maintenance actions.
+    </p>
+
+    <p><strong>2. Driver Behavior Monitoring</strong>:  
+      IntelliRoad detects <strong>rash driving, overspeeding, and unsafe overtaking</strong> by 
+      analyzing vehicle speed and movement patterns through GPS and accelerometer data.
+    </p>
+
+    <p><strong>3. Real-Time Cloud Dashboard</strong>:  
+      A centralized, cloud-based dashboard provides interactive maps and analytics 
+      built with <strong>Leaflet.js</strong> and <strong>Plotly</strong>, helping authorities track 
+      incidents with timestamps for better decision-making.
+    </p>
+
+    <p><strong>4. Smart Traffic Insights</strong>:  
+      By combining AI detection and IoT data, IntelliRoad supports smart city initiatives 
+      through actionable insights, traffic violation alerts, and sustainable urban planning.
+    </p>
+
+    <p><strong>5. Scalable Smart City Integration</strong>:  
+      Designed to be <strong>scalable and cost-effective</strong>, IntelliRoad can be deployed 
+      across multiple regions, making it ideal for modernizing city infrastructure.
+    </p>
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- === JavaScript === -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('header nav a');
+    const pageSections = document.querySelectorAll('.page-section');
+    const roadElement = document.getElementById('main-road');
+    const trafficContainer = document.getElementById('traffic-container');
+
+    let vehicleInterval = null; // store interval ID for vehicles
+
+    const vehicleTypes = [
+      { class: 'car', img: 'images/car.png' },
+      { class: 'bus', img: 'images/bus.png' },
+      { class: 'bike', img: 'images/bike.png' },
+      { class: 'truck', img: 'images/truck.png' },
+      { class: 'car', img: 'images/car2.png' }
+    ];
+
+    /** Create a single vehicle */
+    function createVehicle() {
+      if (!roadElement || roadElement.style.display === 'none') return;
+
+      const vehicle = document.createElement('div');
+      const vehicleData = vehicleTypes[Math.floor(Math.random() * vehicleTypes.length)];
+      vehicle.classList.add('vehicle', vehicleData.class);
+      vehicle.innerHTML = `<img src="${vehicleData.img}" alt="${vehicleData.class}">`;
+
+      const duration = Math.random() * 8 + 6; // random speed
+      const delay = Math.random() * -10;
+      const bottomPos = Math.random() * 50 + 40;
+
+      vehicle.style.animationDuration = `${duration}s`;
+      vehicle.style.animationDelay = `${delay}s`;
+      vehicle.style.bottom = `${bottomPos}px`;
+
+      trafficContainer.appendChild(vehicle);
+
+      // Remove vehicle after animation ends
+      vehicle.addEventListener('animationend', () => vehicle.remove());
+    }
+
+    /** Start generating vehicles */
+    function startTraffic() {
+      if (vehicleInterval) return; // already running
+      vehicleInterval = setInterval(createVehicle, 4000);
+
+      // create some initial vehicles instantly
+      for (let i = 0; i < 5; i++) createVehicle();
+    }
+
+    /** Stop generating vehicles and clear all from DOM */
+    function stopTraffic() {
+      clearInterval(vehicleInterval);
+      vehicleInterval = null;
+      trafficContainer.innerHTML = ''; // clear existing vehicles
+    }
+
+    /** Navigation Logic */
+    const navigateTo = (hash) => {
+      pageSections.forEach(section => section.classList.remove('active'));
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      const targetSection = document.querySelector(hash);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        const activeLink = document.querySelector(`header nav a[href="${hash}"]`);
+        if (activeLink) activeLink.classList.add('active');
+
+        if (hash === '#home') {
+          roadElement.style.display = 'block';
+          startTraffic(); // start creating vehicles
+        } else {
+          roadElement.style.display = 'none';
+          stopTraffic(); // stop vehicle generation
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    // Initial page load
+    const initialHash = window.location.hash || '#home';
+    navigateTo(initialHash);
+
+    // Handle nav clicks
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const hash = link.getAttribute('href');
+        window.location.hash = hash;
+        navigateTo(hash);
+      });
+    });
+
+    // Handle manual hash changes
+    window.addEventListener('hashchange', () => {
+      navigateTo(window.location.hash);
+    });
+  });
+</script>
+   <!-- Footer -->
+<footer class="site-footer">
+  <div class="scrolling-text">
+    <span>This project is currently under development.</span>
+  </div>
+</footer>
+</body>
+</html>

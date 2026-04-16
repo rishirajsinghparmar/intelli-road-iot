@@ -1,0 +1,281 @@
+/* -------------------- */
+/* Base Reset           */
+/* -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* -------------------- */
+/* Main Container       */
+/* -------------------- */
+.retro-grid-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------- */
+/* Retro Grid Background*/
+/* -------------------- */
+.retro-grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.6;
+  perspective: 450px;
+  --grid-angle: 55deg;
+}
+
+.grid-rotated {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(var(--grid-angle));
+}
+
+.grid-pattern {
+  background-repeat: repeat;
+  background-size: 60px 60px;
+  height: 300vh;
+  width: 600vw;
+  margin-left: -50%;
+  transform-origin: 100% 0 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2) 1px,
+      transparent 0
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 1px, transparent 0);
+  animation: gridMove 15s linear infinite;
+}
+
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, white, transparent 90%);
+  z-index: 1;
+}
+
+/* -------------------- */
+/* Center Content       */
+/* -------------------- */
+.center-content {
+  position: relative;
+  z-index: 2;
+  top: 77%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.retro-text {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  background: linear-gradient(90deg, #020007d0, #0f42b0, #4400ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* -------------------- */
+/* Liquid Glass Button  */
+/* -------------------- */
+.liquid-button {
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #333;
+  cursor: pointer;
+  border: none;
+  backdrop-filter: url("#liquid-glass-filter");
+  box-shadow:
+    0 0 6px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 0.5px -3px rgba(0, 0, 0, 0.9),
+    inset -3px -3px 0.5px -3px rgba(0, 0, 0, 0.85),
+    inset 1px 1px 1px -0.5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 1px -0.5px rgba(0, 0, 0, 0.6),
+    inset 0 0 6px 6px rgba(0, 0, 0, 0.12),
+    inset 0 0 2px 2px rgba(0, 0, 0, 0.06),
+    0 0 12px rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.liquid-button:hover {
+  transform: scale(1.05);
+}
+
+.liquid-button:active {
+  transform: scale(0.98);
+}
+
+/* -------------------- */
+/* Metal Button         */
+/* -------------------- */
+.metal-button {
+  position: relative;
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(to bottom, #b9b9b9, #969696);
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 -1px 0 rgba(80, 80, 80, 1);
+
+  /* Metallic depth */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 3px 8px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.25s cubic-bezier(0.1, 0.4, 0.2, 1);
+}
+
+.metal-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.metal-button:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------- */
+/* Animations           */
+/* -------------------- */
+@keyframes gridMove {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 0, 128, 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 140, 0, 1));
+  }
+}
+
+/* === Header and Navbar === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  color: var(--accent-color);
+  font-weight: 800;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+
+/* === Footer Styles === */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--road-color);
+  text-align: center;
+  padding: 8px 0;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 5s linear infinite;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Smooth left scrolling */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* === Color Changing Text Animation === */
+.scrolling-text span {
+  animation: colorChange 2s infinite alternate;
+}
+
+@keyframes colorChange {
+  0%   { color: #FFD700; }   /* Gold */
+  25%  { color: #00BFFF; }   /* Deep Sky Blue */
+  50%  { color: #32CD32; }   /* Lime Green */
+  75%  { color: #FF4500; }   /* Orange Red */
+  100% { color: #FFD700; }   /* Back to Gold */
+}

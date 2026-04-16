@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About IntelliRoad</title>
+
+  <!-- Fonts & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- === Header === -->
+  <header>
+    <h1>IntelliRoad</h1>
+    <nav>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="intelliroad-info.html" class="active">Learn More</a>
+    </nav>
+  </header>
+
+  <!-- === Main Section === -->
+  <main class="page-section active">
+    <div class="content-card">
+      <div class="image-container">
+      <!--  <img src="images/intelliroad-banner.jpg" alt="IntelliRoad AI IoT System" class="learn-more-img">-->
+      </div>
+
+      <h3>What is IntelliRoad?</h3>
+      <p>
+        <strong>IntelliRoad</strong> is an innovative AI + IoT-powered system designed to monitor road conditions
+        and driver behavior in real time. Using a combination of low-cost sensors and advanced
+        computer vision models, IntelliRoad detects <strong>potholes, road damages, overspeeding,
+        rash driving, and unsafe overtaking</strong>.
+      </p>
+      <p>
+        It leverages a <strong>Raspberry Pi</strong> device equipped with a camera, GPS, accelerometer,
+        and 4G connectivity to capture live data. This data is processed using <strong>YOLO deep
+        learning models</strong> and then transmitted to a <strong>cloud-based dashboard</strong> where authorities
+        can visualize road conditions, track traffic events, and take proactive measures.
+      </p>
+
+      <h3>Why IntelliRoad?</h3>
+      <ul>
+        <li>Reduces accidents by identifying road hazards early.</li>
+        <li>Provides a cost-effective smart city solution for governments and municipalities.</li>
+        <li>Improves urban planning with real-time traffic and road analytics.</li>
+        <li>Assists in proactive road maintenance and repairs.</li>
+      </ul>
+
+      <h3>How It Works</h3>
+      <div class="image-container">
+        <img src="images/GPS MODULE.png" alt="System Architecture" class="learn-more-img">
+      </div>
+      <ol>
+        <li><strong>Data Collection:</strong> The Raspberry Pi device captures live road images and
+            driving behavior data through its camera, GPS, and accelerometer.</li>
+        <li><strong>Deep Learning Detection:</strong> YOLO-based AI models process the images to detect
+            potholes, rash driving, and other critical events.</li>
+        <li><strong>IoT Integration:</strong> Processed data is sent to the cloud through 4G connectivity
+            for storage and further analysis.</li>
+        <li><strong>Visualization:</strong> A cloud dashboard built with Leaflet.js displays the detected
+            issues on interactive maps along with timestamps and analytics.</li>
+        <li><strong>Action:</strong> Authorities are alerted to take immediate actions such as
+            repairing roads or addressing traffic violations.</li>
+      </ol>
+
+      <h3>Key Hardware & Software Used</h3>
+      <ul>
+        <li><strong>Hardware:</strong> Raspberry Pi 4, Pi Camera, GPS Module, 4G Module, Accelerometer</li>
+        <li><strong>Software:</strong> Python, YOLO (Deep Learning), Flask/FastAPI, Leaflet.js, TensorFlow/PyTorch</li>
+      </ul>
+
+      <h3>Impact of IntelliRoad</h3>
+      <p>
+        IntelliRoad provides a unified solution for enhancing road safety and infrastructure
+        management. By combining real-time monitoring, AI detection, and IoT connectivity,
+        it empowers municipal authorities to:
+      </p>
+      <ul>
+        <li>Minimize accidents and save lives.</li>
+        <li>Improve road quality with timely maintenance.</li>
+        <li>Reduce congestion and carbon emissions.</li>
+        <li>Move closer to achieving <strong>Net Zero goals</strong> for sustainable cities.</li>
+      </ul>
+
+      <div class="btn-group">
+        <a href="index.html#services" class="btn btn-primary">Explore Features</a>
+        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

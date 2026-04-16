@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IntelliRoad — Rash Driving</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="rash.css" />
+
+  <!-- Meta -->
+  <meta name="description" content="Detect and review rash driving events: overspeeding, harsh braking/acceleration, sharp cornering." />
+</head>
+<body>
+  <!-- ========== Header / Nav ========== -->
+  <header class="ir-header">
+    <div class="ir-container header-row">
+      <a class="brand" href="index.html" aria-label="IntelliRoad Home">
+        <span class="logo-dot" aria-hidden="true"></span>
+        IntelliRoad
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="selection.html" class="active">Back</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== Title & Actions ========== -->
+  <section class="ir-container page-title">
+    <div>
+      <h1>Rash Driving Events</h1>
+      <p class="muted">Overspeeding, harsh braking/acceleration and sharp cornering detected by the Pi's IMU + GPS.</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="button">Export CSV</button>
+      <button class="btn" type="button">Driver Report</button>
+    </div>
+  </section>
+
+  <!-- ========== Filters & KPIs ========== -->
+  <section class="ir-container filters">
+    <form class="filters-row" role="search" aria-label="Filter rash driving events">
+      <label class="field">
+        <span class="field-label">Search</span>
+        <input type="search" placeholder="Vehicle/Driver/ID…" />
+      </label>
+      <label class="field">
+        <span class="field-label">Event Type</span>
+        <select>
+          <option value="all" selected>All</option>
+          <option value="overspeed">Overspeed</option>
+          <option value="brake">Harsh Brake</option>
+          <option value="accel">Harsh Accel</option>
+          <option value="corner">Sharp Corner</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Severity</span>
+        <select>
+          <option value="all" selected>All</option>
+          <option value="critical">Critical</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Date</span>
+        <input type="date" />
+      </label>
+      <div class="filters-gap"></div>
+      <button class="btn" type="reset">Reset</button>
+      <button class="btn btn-primary" type="submit">Apply</button>
+    </form>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">27</div>
+        <div class="stat-label">Events Today</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Overspeed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">9</div>
+        <div class="stat-label">Harsh Brakes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Critical</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Content Grid ========== -->
+  <main class="ir-container grid">
+    <!-- Left: Event cards table/list -->
+    <section class="cards" aria-label="Rash driving list">
+
+      <!-- Card 1: Overspeed -->
+      <article class="card" data-type="overspeed" data-severity="high">
+        <header class="card-head">
+          <div class="title">
+            <h3>#RD-2025-0141</h3>
+            <span class="badge type overspeed">Overspeed</span>
+            <span class="chip severity high">High</span>
+          </div>
+          <div class="meta">29 Sep 2025 • 04:22 IST • Vehicle KA-09-AB-2134</div>
+        </header>
+        <div class="card-body">
+          <dl class="kv">
+            <div>
+              <dt>Driver</dt>
+              <dd>R. Kumar</dd>
+            </div>
+            <div>
+              <dt>Road</dt>
+              <dd>ORR, Nagawara</dd>
+            </div>
+            <div>
+              <dt>Speed / Limit</dt>
+              <dd>88 km/h / 60 km/h</dd>
+            </div>
+            <div>
+              <dt>Overspeed Δ</dt>
+              <dd>+28 km/h</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>13.0280, 77.6250</dd>
+            </div>
+          </dl>
+          <figure class="thumb">
+            <img src="placeholder-road.jpg" alt="Overspeed location thumbnail" />
+          </figure>
+        </div>
+        <footer class="card-foot">
+          <div class="btn-row">
+            <button class="btn btn-light" type="button">View on Map</button>
+            <button class="btn" type="button">Warn Driver</button>
+            <button class="btn btn-primary" type="button">Open Case</button>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Card 2: Harsh Brake -->
+      <article class="card" data-type="brake" data-severity="critical">
+        <header class="card-head">
+          <div class="title">
+            <h3>#RD-2025-0138</h3>
+            <span class="badge type brake">Harsh Brake</span>
+            <span class="chip severity critical">Critical</span>
+          </div>
+          <div class="meta">29 Sep 2025 • 02:57 IST • Vehicle UP-16-CT-5521</div>
+        </header>
+        <div class="card-body">
+          <dl class="kv">
+            <div>
+              <dt>Driver</dt>
+              <dd>P. Singh</dd>
+            </div>
+            <div>
+              <dt>g-force (est.)</dt>
+              <dd>−0.72 g</dd>
+            </div>
+            <div>
+              <dt>Speed Before</dt>
+              <dd>62 km/h</dd>
+            </div>
+            <div>
+              <dt>Road</dt>
+              <dd>NH44, Sector 62</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>28.6061, 77.3639</dd>
+            </div>
+          </dl>
+          <figure class="thumb">
+            <img src="placeholder-road.jpg" alt="Harsh brake location thumbnail" />
+          </figure>
+        </div>
+        <footer class="card-foot">
+          <div class="btn-row">
+            <button class="btn btn-light" type="button">View on Map</button>
+            <button class="btn" type="button">Call Driver</button>
+            <button class="btn btn-primary" type="button">Flag for Review</button>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Card 3: Sharp Corner -->
+      <article class="card" data-type="corner" data-severity="medium">
+        <header class="card-head">
+          <div class="title">
+            <h3>#RD-2025-0129</h3>
+            <span class="badge type corner">Sharp Corner</span>
+            <span class="chip severity medium">Medium</span>
+          </div>
+          <div class="meta">28 Sep 2025 • 21:30 IST • Vehicle DL-3C-AZ-4411</div>
+        </header>
+        <div class="card-body">
+          <dl class="kv">
+            <div>
+              <dt>Driver</dt>
+              <dd>A. Verma</dd>
+            </div>
+            <div>
+              <dt>Lateral acc.</dt>
+              <dd>0.48 g</dd>
+            </div>
+            <div>
+              <dt>Corner Speed</dt>
+              <dd>45 km/h</dd>
+            </div>
+            <div>
+              <dt>Road</dt>
+              <dd>Ring Rd, South Ex</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>28.5672, 77.2100</dd>
+            </div>
+          </dl>
+          <figure class="thumb">
+            <img src="placeholder-road.jpg" alt="Sharp corner location thumbnail" />
+          </figure>
+        </div>
+        <footer class="card-foot">
+          <div class="btn-row">
+            <button class="btn btn-light" type="button">View on Map</button>
+            <button class="btn" type="button">Notify Supervisor</button>
+            <button class="btn btn-primary" type="button">Coach Driver</button>
+          </div>
+        </footer>
+      </article>
+
+    </section>
+
+    <!-- Right: Map panel & leaderboard -->
+    <aside class="map-panel" aria-label="Map and context">
+      <div class="panel">
+        <h3>Map View</h3>
+        <div class="map-placeholder" role="img" aria-label="Map placeholder">Map will appear here</div>
+        <p class="muted small">Wire this to Leaflet and zoom to the selected event.</p>
+      </div>
+      <div class="panel">
+        <h3>Driver Risk Leaderboard</h3>
+        <ol class="leader">
+          <li><span class="rank">1</span> P. Singh <span class="score">82</span></li>
+          <li><span class="rank">2</span> R. Kumar <span class="score">71</span></li>
+          <li><span class="rank">3</span> A. Verma <span class="score">66</span></li>
+        </ol>
+        <p class="muted small">Score is a weighted blend of event count, severity and recency.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ========== Footer ========== -->
+   <!-- Footer -->
+<footer class="site-footer">
+  <div class="scrolling-text">
+    <span>This project is currently under development.</span>
+  </div>
+</footer>
+
+  <footer class="ir-footer">
+    <div class="ir-container footer-row">
+      <p>© 2025 IntelliRoad. All rights reserved.</p>
+      <p class="muted">Built for Raspberry Pi 5 edge deployments.</p>
+    </div>
+  </footer>
+</body>
+</html>

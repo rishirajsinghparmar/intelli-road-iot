@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IntelliRoad — Live Dashboard</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="live-dashboard.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- App JS -->
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- Soft animated gradient backdrop -->
+  <div class="bg-gradient"></div>
+
+  <!-- ===== Header/Navbar ===== -->
+  <header>
+    <h1>IntelliRoad</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="selection.html" class="active">Back</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <!-- ===== First Row: Live Telemetry & Connection Status ===== -->
+    <section class="row">
+      <!-- Live Telemetry Panel -->
+      <article class="panel panel-xl">
+        <div class="panel-header">
+          <h2>Live Telemetry</h2>
+          <p class="muted">Accelerometer + GPS feed from Raspberry&nbsp;Pi</p>
+        </div>
+
+        <div class="kpi-grid">
+          <!-- Speed KPI -->
+          <div class="kpi">
+            <h3>Current Speed</h3>
+            <div class="value" id="speed">0</div>
+            <div class="sub">km/h</div>
+          </div>
+
+          <!-- Acceleration KPI -->
+          <div class="kpi">
+            <h3>Current Acceleration</h3>
+            <div class="value" id="accel">0</div>
+            <div class="sub">m/s²</div>
+          </div>
+
+          <!-- Last Update Timestamp -->
+          <div class="kpi">
+            <h3>Last Update</h3>
+            <div class="value small" id="lastUpdate">—</div>
+            <div class="sub">Device Timestamp</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Raspberry Pi Connection Panel -->
+      <article class="panel panel-sm">
+        <div class="panel-header">
+          <h2>Pi Connection</h2>
+          <p class="muted tiny">Live WebSocket Status</p>
+        </div>
+
+        <div class="conn">
+          <div class="conn-light" id="connLight"></div>
+          <div>
+            <div id="connLabel" class="conn-label">Disconnected</div>
+            <div class="muted tiny">Status: Waiting for data...</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="stack">
+          <div class="row-just">
+            <span class="muted tiny">Endpoint</span>
+            <code id="endpointLabel" class="tiny">ws://localhost:8080</code>
+          </div>
+          <button id="reconnectBtn" class="btn">Reconnect</button>
+          <button id="mockBtn" class="btn subtle">Toggle Mock Data</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Second Row: Map Panel ===== -->
+    <section class="row">
+      <article class="panel panel-map">
+        <div class="panel-header">
+          <h2>Current Location</h2>
+          <p class="muted" id="latlngText">Lat: — , Lng: —</p>
+        </div>
+
+        <!-- Leaflet Map -->
+        <div id="map"></div>
+
+        <div class="foot">
+          <div class="muted tiny">Based on GPS module readings</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Third Row: Alerts or Quick Summary ===== -->
+    <section class="row">
+      <!-- Example Bouncy Card for a Critical Alert -->
+      <article class="card" data-type="critical">
+        <h3>Critical Alert</h3>
+        <div class="card-body">
+          <p>Severe pothole detected near NH44.</p>
+        </div>
+        <div class="card-foot">
+          <button class="btn">View Details</button>
+          <button class="btn subtle">Dismiss</button>
+        </div>
+      </article>
+
+      <!-- Example Bouncy Card for Warning -->
+      <article class="card" data-type="warning">
+        <h3>Warning</h3>
+        <div class="card-body">
+          <p>Rash driving event logged: Overspeed detected.</p>
+        </div>
+        <div class="card-foot">
+          <button class="btn">View on Map</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+   <!-- Footer -->
+<footer class="site-footer">
+  <div class="scrolling-text">
+    <span>This project is currently under development.</span>
+  </div>
+</footer>
+  <footer class="ir-footer">
+    <p>© 2025 IntelliRoad. All rights reserved.</p>
+  </footer>
+</body>
+</html>

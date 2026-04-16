@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IntelliRoad — Pothole Detections</title>
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="pothole.css" />
+
+  <!-- Favicons (optional) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Meta -->
+  <meta name="description" content="Review, verify, and manage pothole detections for IntelliRoad." />
+</head>
+<body>
+  <!-- ========== Header / Nav ========== -->
+  <header class="ir-header">
+    <div class="ir-container header-row">
+      <a class="brand" href="index.html" aria-label="IntelliRoad Home">
+        <span class="logo-dot" aria-hidden="true"></span>
+        IntelliRoad
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="selection.html" class="active">Back</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== Page Title & Actions ========== -->
+  <section class="ir-container page-title">
+    <div>
+      <h1>Pothole Detections</h1>
+      <p class="muted">Review detections from your Raspberry Pi & edge models. Verify, prioritize, and export for your road-work queue.</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="button">Export CSV</button>
+      <button class="btn" type="button">Download Report</button>
+    </div>
+  </section>
+
+  <!-- ========== Filters & Stats ========== -->
+  <section class="ir-container filters">
+    <form class="filters-row" role="search" aria-label="Filter pothole detections">
+      <label class="field">
+        <span class="field-label">Search</span>
+        <input type="search" placeholder="ID, road name, city…" />
+      </label>
+      <label class="field">
+        <span class="field-label">Severity</span>
+        <select>
+          <option value="all" selected>All</option>
+          <option value="critical">Critical</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Status</span>
+        <select>
+          <option value="all" selected>All</option>
+          <option value="new">New</option>
+          <option value="verified">Verified</option>
+          <option value="scheduled">Scheduled</option>
+          <option value="fixed">Fixed</option>
+        </select>
+      </label>
+      <div class="filters-gap"></div>
+      <button class="btn" type="reset">Reset</button>
+      <button class="btn btn-primary" type="submit">Apply</button>
+    </form>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">42</div>
+        <div class="stat-label">Total Detections</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Critical</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">18</div>
+        <div class="stat-label">Awaiting Verification</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Fixed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Content Grid ========== -->
+  <main class="ir-container grid">
+    <!-- Left: List of pothole cards -->
+    <section class="cards" aria-label="Detections list">
+
+      <!-- Card template (duplicate for more items) -->
+      <article class="card" data-severity="critical" data-status="new">
+        <header class="card-head">
+          <div class="title">
+            <h3>#PH-2025-0091</h3>
+            <span class="badge severity critical">Critical</span>
+            <span class="chip status new">New</span>
+          </div>
+          <div class="meta">29 Sep 2025 • 04:10 IST • Confidence 92%</div>
+        </header>
+        <div class="card-body">
+          <dl class="kv">
+            <div>
+              <dt>Road</dt>
+              <dd>NH44, Near Sector 62</dd>
+            </div>
+            <div>
+              <dt>City</dt>
+              <dd>Noida, UP</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>28.6061, 77.3639</dd>
+            </div>
+            <div>
+              <dt>Depth (est.)</dt>
+              <dd>7–9 cm</dd>
+            </div>
+          </dl>
+          <figure class="thumb">
+            <img src="placeholder-pothole.jpg" alt="Detected pothole thumbnail" />
+          </figure>
+        </div>
+        <footer class="card-foot">
+          <div class="btn-row">
+            <button class="btn btn-light" type="button">View on Map</button>
+            <button class="btn" type="button">Verify</button>
+            <button class="btn btn-primary" type="button">Mark as Scheduled</button>
+          </div>
+        </footer>
+      </article>
+
+      <article class="card" data-severity="high" data-status="verified">
+        <header class="card-head">
+          <div class="title">
+            <h3>#PH-2025-0087</h3>
+            <span class="badge severity high">High</span>
+            <span class="chip status verified">Verified</span>
+          </div>
+          <div class="meta">28 Sep 2025 • 18:42 IST • Confidence 88%</div>
+        </header>
+        <div class="card-body">
+          <dl class="kv">
+            <div>
+              <dt>Road</dt>
+              <dd>MG Road</dd>
+            </div>
+            <div>
+              <dt>City</dt>
+              <dd>Bengaluru, KA</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>12.9719, 77.5937</dd>
+            </div>
+            <div>
+              <dt>Depth (est.)</dt>
+              <dd>5–6 cm</dd>
+            </div>
+          </dl>
+          <figure class="thumb">
+            <img src="placeholder-pothole.jpg" alt="Verified pothole thumbnail" />
+          </figure>
+        </div>
+        <footer class="card-foot">
+          <div class="btn-row">
+            <button class="btn btn-light" type="button">View on Map</button>
+            <button class="btn" type="button">Create Work Order</button>
+            <button class="btn btn-primary" type="button">Mark Fixed</button>
+          </div>
+        </footer>
+      </article>
+
+      <!-- Add more <article class="card">… as detections grow -->
+    </section>
+
+    <!-- Right: Map & details (pure HTML/CSS placeholder) -->
+    <aside class="map-panel" aria-label="Map and context">
+      <div class="panel">
+        <h3>Map View</h3>
+        <div class="map-placeholder" role="img" aria-label="Map placeholder">Map will appear here</div>
+        <p class="muted small">Hook this up to Leaflet or Google Maps in your JS later.</p>
+      </div>
+      <div class="panel">
+        <h3>Recent Activity</h3>
+        <ul class="activity">
+          <li><span class="dot critical"></span> Critical pothole reported near Sector 62. <time>04:10</time></li>
+          <li><span class="dot verified"></span> #PH-2025-0087 verified by field team. <time>20:05</time></li>
+          <li><span class="dot fixed"></span> #PH-2025-0071 marked fixed. <time>14:22</time></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ========== Footer ========== -->
+   <!-- Footer -->
+<footer class="site-footer">
+  <div class="scrolling-text">
+    <span>This project is currently under development.</span>
+  </div>
+</footer>
+  <footer class="ir-footer">
+    <div class="ir-container footer-row">
+      <p>© 2025 IntelliRoad. All rights reserved.</p>
+      <p class="muted">Built for Raspberry Pi 5 edge deployments.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>
